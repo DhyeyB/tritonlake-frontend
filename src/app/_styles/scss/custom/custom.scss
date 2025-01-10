@@ -1,0 +1,668 @@
+.btn {
+    background-size: 200% auto;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-position: right center !important; /* change the direction of the change here */
+    transition: 0.5s;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+.cursor-auto {
+    cursor: auto;
+}
+.question-list,
+.results-list {
+    width: 100%;
+    overflow-x: auto;
+    display: flex;
+}
+.question-card {
+    width: 340px !important;
+    height: 400px;
+    overflow: hidden;
+    display: inline-table;
+    margin: 10px 10px 10px 0px;
+    flex: none;
+}
+
+.question-card .question-body {
+    margin: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 280px;
+}
+
+.text-black {
+    color: #000000 !important;
+}
+
+.submissions-list {
+    max-height: 600px;
+    overflow-y: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.submission-card {
+    margin-bottom: 20px;
+}
+
+.submission-card .answer-body {
+    margin: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 200px;
+}
+
+.horizontal-scroll {
+    overflow-x: auto;
+}
+
+canvas#whiteboard,
+canvas#drawingCanvas {
+    background-color: #eff5ff;
+    border-radius: 6px;
+    width: 100% !important;
+    height: 600px;
+}
+
+#sketcher {
+    position: relative;
+}
+
+#sketcher #colorPicker,
+#sketcher .select2 {
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    z-index: 20;
+    width: 80px !important;
+}
+
+#draw-tools {
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    z-index: 20;
+}
+
+#draw-tools button {
+    background: transparent;
+    border: none;
+}
+
+.tool-button.active circle {
+    fill: #111;
+}
+
+.tool-button.active path {
+    stroke: #fff;
+    fill: #fff;
+}
+
+.student-card {
+    width: 240px !important;
+    overflow: hidden;
+    display: inline-table;
+    margin: 10px 10px 10px 0px;
+    flex: none;
+}
+
+img.student-profile {
+    margin: 0 auto 30px;
+    display: block;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.inner-tools {
+    display: flex;
+    justify-content: end;
+    align-items: flex-start;
+}
+
+#tool-options {
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+}
+#tool-options select {
+    display: inline-block;
+    width: 170px;
+}
+
+.tool {
+    cursor: pointer;
+}
+
+.tool circle {
+    fill: #f7f7f7;
+}
+
+.tool path {
+    stroke: #222;
+}
+
+.tool.active circle,
+.tool:hover circle {
+    fill: #222;
+}
+
+.tool.active path,
+.tool:hover path {
+    stroke: #fff;
+}
+
+.btn-rounded {
+    border-radius: 50px;
+}
+
+.tab-list {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+    padding-left: 0px;
+}
+
+.tab {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgba(255, 140, 75, 0.2);
+    color: #ff8c4b;
+    border-radius: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.tab.active {
+    background-color: #ff8c4b;
+    color: #fff;
+}
+
+.scrolling-cards {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 20px;
+}
+
+.scrolling-cards .card {
+    flex: 0 0 auto;
+    width: 200px; /* Set the width of each card */
+    margin-right: 10px;
+    border: 1px solid #dee2e6; /* Set your desired border color */
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.scrolling-cards .grade-card {
+    width: 250px; /* Set the width of each card */
+}
+
+#drawing-tool {
+    position: relative;
+}
+
+.bordered {
+    border: 1px solid #f1f1f1;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+.answer-compare {
+    height: 200px;
+}
+
+@media all and (max-width: 700px) {
+    .w-sm-100 {
+        width: 100%;
+    }
+    .mb-sm-50 {
+        margin-bottom: 100px;
+    }
+    h1 {
+        font-size: 30px;
+    }
+    .bg-mobile {
+        height: 400px;
+    }
+    .h-sm-100 {
+        height: 30vh;
+    }
+    .buttons {
+        position: absolute;
+        bottom: 30px;
+        width: 90%;
+    }
+    .d-sm-none {
+        display: none !important;
+    }
+    .col-sm-6 {
+        width: 50%;
+    }
+    .col-sm-4 {
+        width: 33%;
+    }
+    #tool-options {
+        position: absolute;
+        bottom: 10px;
+        left: 20px;
+        width: 80%;
+    }
+    #tool-options select {
+        display: inline-block;
+        width: 100px;
+        margin-bottom: 10px;
+    }
+    #sketcher #colorPicker,
+    #sketcher .select2 {
+        position: absolute;
+        top: 20px;
+        right: 50px;
+        z-index: 20;
+        width: 80px !important;
+    }
+    #draw-tools {
+        width: 300px;
+    }
+    #draw-tools button {
+        margin-bottom: 10px;
+    }
+}
+
+.border-one {
+    border: 1px solid rgb(199, 199, 199) !important;
+}
+
+.rounded-b {
+    border-radius: 10px !important;
+}
+
+.bg-grey {
+    background-color: #f5f5f5 !important;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+}
+
+#days-left {
+    right: 1.6rem !important;
+    top: 1.5rem !important;
+    border-radius: 0 !important;
+}
+
+.quickshare-menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.sticky-heading {
+    position: fixed !important;
+    z-index: 10;
+    width: 100%;
+    padding-right: 18% !important;
+    // top: 7.5%;
+    top: var(--bs-app-header-height);
+}
+
+.mt-100 {
+    margin-top: 100px !important;
+}
+
+.mt-75 {
+    margin-top: 75px !important;
+}
+
+.mt-50 {
+    margin-top: 50px !important;
+}
+
+.mt-25 {
+    margin-top: 25px !important;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.popup-buttons button {
+    padding: 10px 20px;
+}
+
+.input-section {
+    margin-bottom: 20px;
+}
+
+.display-section {
+}
+
+.bg-white-100 {
+    background-color: #f5f5f515 !important;
+}
+
+.opportunity-tabs .nav-link {
+    background-color: #333 !important;
+    border-radius: 6px !important;
+    margin-right: 10px !important;
+    border: var(--bs-nav-tabs-border-width) solid transparent;
+    color: #fff !important;
+}
+
+.opportunity-tabs .nav-link.active {
+    color: #fff !important;
+    background-color: #006838 !important;
+    border-radius: 6px !important;
+}
+
+.opportunity-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus {
+    isolation: isolate;
+    border-color: var(--bs-nav-tabs-link-hover-border-color);
+}
+.opportunity-card img {
+    height: 100px;
+    object-fit: cover;
+}
+
+.empty-state-opportunity {
+    background: #fff;
+    text-align: center;
+    padding: 100px 50px;
+}
+
+.empty-state-opportunity i {
+    font-size: 30px;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.opportunity-card-menu {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+
+.opportunity-status {
+    top: 20px;
+    left: 20px;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 400px;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.flip-card-front {
+    background-color: white;
+    color: black;
+}
+
+.flip-card-back {
+    background-color: white;
+    color: black;
+    transform: rotateY(180deg);
+}
+
+.flip-card-inner.no-flip {
+    transform: none !important; /* Prevent the flipping effect */
+    transition: none !important; /* Disable the transition effect */
+}
+
+.btn-disabled {
+    background-color: rgb(113, 113, 113) !important;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.dismiss-action {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+.btn-custom:hover {
+    cursor: pointer;
+}
+
+.metronic-button {
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.metronic-button.modified {
+    background-color: #28a745;
+    color: white;
+    position: relative;
+}
+
+.metronic-button .check-icon {
+    margin-left: 10px;
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+.request-check {
+    position: absolute;
+    bottom: 7px;
+    right: 10px;
+}
+
+#quickshare-flag {
+    top: 75px;
+    left: 20px;
+}
+
+#days-left-corner {
+    right: 1rem;
+}
+
+.flip-card {
+    background-color: transparent;
+    height: 400px;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.flip-card-front {
+    background-color: white;
+    color: black;
+}
+
+.flip-card-back {
+    background-color: white;
+    color: black;
+    transform: rotateY(180deg);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.check-button,
+.x-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.check-button i,
+.x-button i {
+    color: white !important;
+}
+
+.check-button {
+    right: -20px;
+    background-color: #50cd89;
+}
+
+.x-button {
+    left: -20px;
+    background-color: #f3456f;
+}
+
+// when buttons are disabled hover will not have any effect
+button:disabled,
+button.disabled {
+    pointer-events: none; /* Prevent hover and click */
+    opacity: 0.65; /* Optional: Reduce the opacity for disabled buttons */
+
+    &:hover {
+        background-color: initial; /* Remove hover background color */
+        cursor: not-allowed; /* Show not-allowed cursor */
+    }
+}
+
+.react-color .pop {
+    position: absolute;
+    z-index: 2;
+}
+
+.react-color .mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: transparent;
+}
+
+.react-color .picker {
+    position: absolute;
+    z-index: 2;
+}
+
+.react-color .v-swatch .color-box {
+    position: relative;
+}
+
+/* Custom input styling matching your design */
+.t-custom-view-color-input {
+    background-color: #fff;
+    border: none;
+    box-shadow: none;
+    border-radius: 5px;
+    padding: 8px;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.t-span-color-input {
+    height: 1px;
+    border-radius: 4px;
+    padding: 2px !important;
+}
+
+.t-bg-white-opacity {
+    background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.menu-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    margin-right: 0.5rem;
+}
+
+.card-toolbar {
+    .t-bg-primary {
+        background-color: #000 !important;
+
+        &:hover {
+            background-color: #016937 !important;
+        }
+    }
+}

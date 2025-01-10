@@ -1,0 +1,16 @@
+export enum AssetTypes {
+    PUBLICATION = "publication",
+    MOVIE = "movie",
+    TV_SERIES = "tv_series",
+    SEASON = "season",
+    EPISODE = "episode",
+    GAME = "game",
+    AUDIO = "audio",
+    ARTIST = "artist",
+    ALBUM = "album",
+    SONG = "song",
+    PLAYLIST = "playlist",
+    AUDIOBOOK = "audiobook",
+    PODCAST = "podcast",
+    PERSON = "person",
+}

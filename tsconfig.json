@@ -1,0 +1,38 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "incremental": true,
+        "paths": {
+            "@/*": ["./src/*"],
+            "@/card/*": ["./src/app/_components/card/*"],
+            "@/common/*": ["./src/app/_components/common/*"],
+            "@/input/*": ["./src/app/_components/input/*"],
+            "@/media/*": ["./src/app/_components/media/*"],
+            "@/modal/*": ["./src/app/_components/modal/*"],
+            "@/section/*": ["./src/app/_components/section/*"],
+            "@/table/*": ["./src/app/_components/table/*"],
+            "@/_types/common/*": ["./src/app/_types/common/*"],
+            "@/_types/components/*": ["./src/app/_types/components/*"],
+            "@/_types/data/*": ["./src/app/_types/data/*"]
+        },
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ]
+    },
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+    "exclude": ["node_modules", "scripts/*"]
+}

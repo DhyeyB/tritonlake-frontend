@@ -1,0 +1,12 @@
+node_modules
+**/node_modules
+*.code-workspace
+*.key
+**/*.key
+.vscode/
+.next/
+*.yml
+*.css
+*.min.js
+public/
+src/styles/scss/bootstrap/
