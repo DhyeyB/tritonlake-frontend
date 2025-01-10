@@ -9,3 +9,4 @@ module.exports = {
         policies: currentSiteUrl === prodUrl ? [{ userAgent: "*", allow: "/" }] : [{ userAgent: "*", disallow: "/" }],
     },
 }
+
