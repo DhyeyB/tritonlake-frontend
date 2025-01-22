@@ -65,6 +65,7 @@ const Signin = () => {
         router.push("/dashboard")
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+    console.log("test deployment for cicd pipeline")
     return (
         <>
             {show2FAScreen ? (
