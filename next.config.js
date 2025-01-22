@@ -16,7 +16,7 @@ const nextConfig = {
     },
     swcMinify: true,
     compiler: {
-        removeConsole: NODE_ENV === "production" ? true : false,
+        // removeConsole: NODE_ENV === "production" ? true : false,
     },
     compress: true,
     poweredByHeader: false,
