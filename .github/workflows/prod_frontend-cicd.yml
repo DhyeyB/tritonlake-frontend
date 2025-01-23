@@ -22,6 +22,10 @@ jobs:
           node-version: '18.x'
 
       - name: npm install, build, and test
+        env:
+          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+          NEXT_PUBLIC_PLACES_API_KEY: ${{ secrets.NEXT_PUBLIC_PLACES_API_KEY }}
+          NEXT_PUBLIC_DOMAIN_NAME: ${{ secrets.NEXT_PUBLIC_DOMAIN_NAME }}
         run: |
           npm install
           npm run build --if-present
@@ -52,7 +56,7 @@ jobs:
           name: node-app
 
       - name: Unzip artifact for deployment
-        run: unzip release.zip
+        run: unzip release.zip -d app
       
       - name: Login to Azure
         uses: azure/login@v2
@@ -61,11 +65,16 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_ED634F07B9CC47598B0221B5EC07E0A2 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_5A43F4F977C24C8991F2AD312737DEC9 }}
 
-      - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: 'frontend-cicd'
-          slot-name: 'Production'
-          package: .
+      - name: Verify Azure Login
+        run: |
+          az account show
+          ls -la
+
+      # - name: 'Deploy to Azure Web App'
+      #   id: deploy-to-webapp
+      #   uses: azure/webapps-deploy@v3
+      #   with:
+      #     app-name: 'frontend-cicd'
+      #     slot-name: 'Production'
+      #     package: .
           
