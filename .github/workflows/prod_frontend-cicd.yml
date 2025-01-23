@@ -83,7 +83,8 @@ jobs:
           ls -la
           cd app
           ls -la
-          az webapp deployment source config-local-git --name frontend-cicd --resource-group tritonlake-frontend-2_group
+          az webapp deployment source config --name frontend-cicd --resource-group tritonlake-frontend-2_group --repo-url https://github.com/DhyeyB/tritonlake-frontend.git --branch prod --manual-integration
+          
           
 
       # - name: 'Deploy to Azure Web App'
