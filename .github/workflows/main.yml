@@ -102,17 +102,25 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
+      contents: read
     steps:
     #   - name: Checkout code
     #     uses: actions/checkout@v3
 
-      - name: Log in to Azure
+      # - name: Log in to Azure
+      #   uses: azure/login@v2
+      #   with:
+      #     client-id: ${{ secrets.AZURE_CLIENT_ID }}
+      #     tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+      #     client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+      #     subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_AB5CC244280D41649A4718CD94CDB972 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_4DC9D6E3494943B6B6445F3DA0FDBC84 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_978699AF2EB1454FA2A002C4B1B7B799 }}
 
       - name: Verify Azure Login
         run: az account show
