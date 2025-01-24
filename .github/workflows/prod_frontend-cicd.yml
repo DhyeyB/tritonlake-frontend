@@ -52,7 +52,7 @@ jobs:
           name: node-app
 
       - name: Unzip artifact for deployment
-        run: unzip release.zip
+        run: unzip release.zip -d app
       
       - name: Login to Azure
         uses: azure/login@v2
@@ -61,11 +61,20 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D73B2EAC486A4CB184F18D3126F378DF }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D9A35A43558649E1BD904C74C5D1A1D9 }}
 
-      - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: 'frontend-cicd'
-          slot-name: 'Production'
-          package: .
+      - name: Verify Azure Login
+        run: |
+          az account show
+          ls -la
+          cd app
+          ls -la
+          az webapp deployment source config --name frontend-cicd --resource-group tritonlake-frontend-2_group --repo-url https://github.com/DhyeyB/tritonlake-frontend.git --branch prod --manual-integration
+          
+
+    #   - name: 'Deploy to Azure Web App'
+    #     id: deploy-to-webapp
+    #     uses: azure/webapps-deploy@v3
+    #     with:
+    #       app-name: 'frontend-cicd'
+    #       slot-name: 'Production'
+    #       package: .
           
