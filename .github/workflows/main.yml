@@ -1,126 +1,56 @@
-# name: Build and deploy Node.js app to Azure Web App - tritonlake-frontend-2
+on:
+  push:
+    branches:
+      - prod
+  workflow_dispatch:
 
-# on:
-#   push:
-#     branches:
-#       - prod
-#   workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-#     steps:
-#       - uses: actions/checkout@v4
+      - name: Zip artifact for deployment
+        run: zip release.zip ./* -r
 
-#       - name: Set up Node.js version
-#         uses: actions/setup-node@v3
-#         with:
-#           node-version: '18.x'
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v4
+        with:
+          name: node-app
+          path: release.zip
 
-#       - name: npm install, build, and test
-#         env:
-#           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
-#           NEXT_PUBLIC_PLACES_API_KEY: ${{ secrets.NEXT_PUBLIC_PLACES_API_KEY }}
-#           NEXT_PUBLIC_DOMAIN_NAME: ${{ secrets.NEXT_PUBLIC_DOMAIN_NAME }}
-#         run: |
-#           npm install
-#           npm run build --if-present
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    permissions:
+      id-token: write #This is required for requesting the JWT
 
-#       - name: Prepare deployment package
-#         run: |
-#           mkdir release
-#           cp -R .next package.json package-lock.json public release/
-#           cd release
-#           zip -r ../release.zip .
-#         working-directory: .
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: node-app
 
-#       - name: Zip artifact for deployment
-#         run: zip release.zip ./* -r
+      - name: Unzip artifact for deployment
+        run: unzip release.zip -d app
 
-#       - name: Upload artifact for deployment job
-#         uses: actions/upload-artifact@v4
-#         with:
-#           name: nextjs-app
-#           path: release.zip
+      - name: Log in to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-#   deploy:
-#     runs-on: ubuntu-latest
-#     needs: build
-#     environment:
-#       name: 'Production'
-#       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-#     permissions:
-#       id-token: write #This is required for requesting the JWT
-
-#     steps:
-#       - name: Download artifact from build job
-#         uses: actions/download-artifact@v4
-#         with:
-#           name: nextjs-app
-
-#       - name: Unzip artifact for deployment
-#         run: unzip release.zip -d app
-
-#       - name: Log in to Azure
-#         uses: azure/login@v2
-#         with:
-#           client-id: ${{ secrets.AZURE_CLIENT_ID }}
-#           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-#         #   client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
-#           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
-#       - name: Verify Azure Login
-#         run: az account show
-      
-#       - name: Login to Azure
-#         uses: azure/login@v2
-#         with:
-#           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_AB5CC244280D41649A4718CD94CDB972 }}
-#           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_4DC9D6E3494943B6B6445F3DA0FDBC84 }}
-#           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_978699AF2EB1454FA2A002C4B1B7B799 }}
-
-#       - name: 'Deploy to Azure Web App'
-#         id: deploy-to-webapp
-#         uses: azure/webapps-deploy@v3
-#         with:
-#           app-name: 'tritonlake-frontend-2'
-#           # slot-name: 'Production'
-#           package: release.zip
+      - name: Verify Azure Login
+        run: |
+          az account show
+          ls -la
+          cd app
+          ls -la
+          az webapp deployment source config --name frontend-cicd --resource-group tritonlake-frontend-2_group --repo-url https://github.com/DhyeyB/tritonlake-frontend.git --branch prod --manual-integration
           
-
-
-# name: Azure Login Example
-
-# on:
-#   push:
-#     branches:
-#       - prod
-
-# jobs:
-#   login-to-azure:
-#     runs-on: ubuntu-latest
-#     permissions:
-#       id-token: write
-#       contents: read
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v3
-
-#       - name: Log in to Azure
-#         uses: azure/login@v2
-#         with:
-#           client-id: ${{ secrets.AZURE_CLIENT_ID }}
-#           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-#           client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
-#           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
-#       - name: Login to Azure
-#         uses: azure/login@v2
-#         with:
-#           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_AB5CC244280D41649A4718CD94CDB972 }}
-#           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_4DC9D6E3494943B6B6445F3DA0FDBC84 }}
-#           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_978699AF2EB1454FA2A002C4B1B7B799 }}
-
-#       - name: Verify Azure Login
-#         run: az account show
